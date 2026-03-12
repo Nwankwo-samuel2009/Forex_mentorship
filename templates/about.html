@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}About Me - Forex Trading Mentor{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>About Me</h1>
+        <p>Professional Forex Trader & Mentor with 10+ Years of Experience</p>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Your Name" onerror="this.src='https://via.placeholder.com/500x600'">
+            </div>
+            <div class="about-text">
+                <h2>My Journey in Forex Trading</h2>
+                <p>I started my trading journey in 2014, like many others, with losses and frustration. After thousands of hours of screen time, countless losses, and continuous learning, I finally developed a profitable trading system.</p>
+                <p>Today, I'm proud to have helped over 500 students achieve their trading goals. My mission is to shorten your learning curve and help you avoid the mistakes I made.</p>
+
+                <div class="qualifications">
+                    <h3>Qualifications & Experience</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 10+ Years Active Trading Experience</li>
+                        <li><i class="fas fa-check-circle"></i> CFTe Certified Technical Analyst</li>
+                        <li><i class="fas fa-check-circle"></i> Former Institutional Trader</li>
+                        <li><i class="fas fa-check-circle"></i> 500+ Successful Students</li>
+                        <li><i class="fas fa-check-circle"></i> Specialize in Price Action & Risk Management</li>
+                    </ul>
+                </div>
+
+                <div class="trading-philosophy">
+                    <h3>My Trading Philosophy</h3>
+                    <p>I believe in consistency over huge wins. My approach combines technical analysis with strict risk management and psychological discipline. Trading is 20% strategy and 80% psychology.</p>
+                </div>
+
+                <a href="{{ url_for('mentorship') }}" class="btn-primary btn-large">Join My Mentorship Program</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0 50px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.about-content {
+    padding: 80px 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: #666;
+}
+
+.qualifications, .trading-philosophy {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.qualifications h3, .trading-philosophy h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.qualifications ul {
+    list-style: none;
+}
+
+.qualifications li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.qualifications i {
+    color: #28a745;
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-text h2 {
+        font-size: 2rem;
+    }
+}
+</style>
+{% endblock %}

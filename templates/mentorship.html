@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+
+{% block title %}Forex Mentorship Program{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Forex Mentorship Program</h1>
+        <p>Transform Your Trading with Professional Guidance</p>
+    </div>
+</section>
+
+<!-- Program Overview -->
+<section class="program-overview">
+    <div class="container">
+        <div class="overview-grid">
+            <div class="overview-content">
+                <h2>What You'll Learn</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3>Technical Analysis Mastery</h3>
+                            <p>Learn to read charts, identify patterns, and spot high-probability setups</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3>Risk Management</h3>
+                            <p>Position sizing, stop-loss placement, and capital preservation strategies</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3>Trading Psychology</h3>
+                            <p>Develop the mindset of successful traders, overcome fear and greed</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3>Live Trading Sessions</h3>
+                            <p>Watch and learn during real market hours with live executions</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3>Strategy Development</h3>
+                            <p>Create and backtest your own trading strategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overview-image">
+                <img src="https://via.placeholder.com/500x400" alt="Mentorship">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Program Structure -->
+<section class="program-structure">
+    <div class="container">
+        <h2 class="section-title">Program Structure</h2>
+        <div class="structure-grid">
+            <div class="structure-card">
+                <div class="card-number">1</div>
+                <h3>Foundation Phase</h3>
+                <p class="duration">Month 1-2</p>
+                <ul>
+                    <li>Market fundamentals</li>
+                    <li>Chart reading basics</li>
+                    <li>Support and resistance</li>
+                    <li>Basic candlestick patterns</li>
+                </ul>
+            </div>
+            <div class="structure-card">
+                <div class="card-number">2</div>
+                <h3>Intermediate Phase</h3>
+                <p class="duration">Month 3-4</p>
+                <ul>
+                    <li>Advanced patterns</li>
+                    <li>Indicators and oscillators</li>
+                    <li>Entry and exit strategies</li>
+                    <li>Risk management rules</li>
+                </ul>
+            </div>
+            <div class="structure-card">
+                <div class="card-number">3</div>
+                <h3>Advanced Phase</h3>
+                <p class="duration">Month 5-6</p>
+                <ul>
+                    <li>Multiple timeframe analysis</li>
+                    <li>News trading</li>
+                    <li>Advanced psychology</li>
+                    <li>Live trading sessions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form -->
+<section class="application-form">
+    <div class="container">
+        <h2 class="section-title">Apply for Mentorship</h2>
+        <p class="form-intro">Fill out the form below to start your journey. I'll review your application and contact you within 24-48 hours.</p>
+
+        <form method="POST" action="" class="mentorship-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    {{ form.name(class="form-control", placeholder="Your full name") }}
+                    {% if form.name.errors %}
+                        {% for error in form.name.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    {{ form.email(class="form-control", placeholder="your@email.com") }}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    {{ form.phone(class="form-control", placeholder="Optional") }}
+                </div>
+
+                <div class="form-group">
+                    <label for="experience_level">Trading Experience *</label>
+                    {{ form.experience_level(class="form-control") }}
+                    {% if form.experience_level.errors %}
+                        {% for error in form.experience_level.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="trading_style">Preferred Trading Style *</label>
+                    {{ form.trading_style(class="form-control") }}
+                    {% if form.trading_style.errors %}
+                        {% for error in form.trading_style.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="goals">What are your trading goals? *</label>
+                {{ form.goals(class="form-control", rows="4", placeholder="Describe your goals, what you want to achieve...") }}
+                {% if form.goals.errors %}
+                    {% for error in form.goals.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="message">Additional Information</label>
+                {{ form.message(class="form-control", rows="3", placeholder="Any questions or additional information?") }}
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="btn-primary btn-large">Submit Application</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0 50px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.program-overview {
+    padding: 80px 0;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.feature-list {
+    margin-top: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-item i {
+    color: #28a745;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.feature-item h3 {
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.feature-item p {
+    color: #666;
+}
+
+.overview-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.program-structure {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.structure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.structure-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-number {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #667eea;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.structure-card h3 {
+    margin: 1rem 0 0.5rem;
+    color: #333;
+}
+
+.structure-card .duration {
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.structure-card ul {
+    list-style: none;
+}
+
+.structure-card li {
+    margin-bottom: 0.5rem;
+    color: #666;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.structure-card li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+}
+
+.application-form {
+    padding: 60px 0;
+}
+
+.form-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    color: #666;
+}
+
+.mentorship-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+select.form-control {
+    background: white;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .mentorship-form {
+        padding: 1.5rem;
+    }
+}
+</style>
+{% endblock %}

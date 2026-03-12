@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Forex Trading Mentorship{% endblock %}
+
+{% block content %}
+<section class="dashboard-section">
+    <div class="container">
+        <h1 class="dashboard-title">Welcome, {{ current_user.username }}!</h1>
+        
+        {% if current_user.is_mentor %}
+        <!-- Mentor Dashboard -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Pending Applications</h3>
+                    <p class="card-number">{{ pending_applications }}</p>
+                    <a href="{{ url_for('admin_applications') }}" class="card-link">View Applications →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Unread Messages</h3>
+                    <p class="card-number">{{ recent_messages|selectattr('is_read', 'equalto', false)|list|length }}</p>
+                    <a href="{{ url_for('admin_messages') }}" class="card-link">View Messages →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-pen"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Blog Posts</h3>
+                    <p class="card-number">Manage</p>
+                    <a href="{{ url_for('admin_posts') }}" class="card-link">Manage Posts →</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas

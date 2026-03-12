@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Trading Blog - Forex Insights & Education{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Trading Blog</h1>
+        <p>Insights, Strategies, and Market Analysis</p>
+    </div>
+</section>
+
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-grid">
+            {% for post in posts.items %}
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="{{ post.image_url or 'https://via.placeholder.com/400x250' }}" alt="{{ post.title }}">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <i class="far fa-calendar"></i> {{ post.date_posted.strftime('%B %d, %Y') }}
+                        </span>
+                        <span class="blog-author">
+                            <i class="far fa-user"></i> {{ post.author.username }}
+                        </span>
+                    </div>
+                    <h2 class="blog-title">
+                        <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                    </h2>
+                    <p class="blog-summary">{{ post.summary }}</p>
+                    <a href="{{ url_for('post', post_id=post.id) }}" class="read-more">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% else %}
+            <p class="no-posts">No blog posts yet. Check back soon!</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if posts.pages > 1 %}
+        <div class="pagination">
+            {% if posts.has_prev %}
+                <a href="{{ url_for('blog', page=posts.prev_num) }}" class="page-link">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </a>
+            {% endif %}
+
+            {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if page_num %}
+                    {% if page_num == posts.page %}
+                        <span class="page-link current">{{ page_num }}</span>
+                    {% else %}
+                        <a href="{{ url_for('blog', page=page_num) }}" class="page-link">{{ page_num }}</a>
+                    {% endif %}
+                {% else %}
+                    <span class="page-link dots">...</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if posts.has_next %}
+                <a href="{{ url_for('blog', page=posts.next_num) }}" class="page-link">
+                    Next <i class="fas fa-chevron-right"></i>
+                </a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+.page-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 0 50px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.blog-section {
+    padding: 60px 0;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 1.5rem;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #999;
+    font-size: 0.875rem;
+}
+
+.blog-meta i {
+    margin-right: 0.25rem;
+}
+
+.blog-title {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.blog-title a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.blog-title a:hover {
+    color: #667eea;
+}
+
+.blog-summary {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.read-more:hover {
+    color: #764ba2;
+}
+
+.no-posts {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.page-link {
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.page-link:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.page-link.current {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.page-link.dots {
+    border: none;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+</style>
+{% endblock %}
